@@ -28,9 +28,6 @@ function Idea() {
       toast.error("Error occurred! Idea not deleted");
     }
   };
-  const handleUpdate = async () => {
-    console.log("update");
-  };
   if (isLoading) return <Loading />;
   if (error) {
     return (

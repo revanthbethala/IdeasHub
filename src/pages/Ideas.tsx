@@ -1,9 +1,9 @@
 import { GetAllIdeas } from "../services/IdeaServices";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../components/Loading";
-import { Filter, Heart, Search } from "lucide-react";
+import { Filter,  Search } from "lucide-react";
 import { motion } from "motion/react";
-import { FormEvent, useState } from "react";
+import {  useState } from "react";
 import { ideaType } from "../types";
 import { NavLink } from "react-router-dom";
 import { capitalizeWords } from "../helpers/capitalizeWords";
@@ -40,9 +40,6 @@ function Ideas() {
     return matchesSearch && matchesTag && matchesTech;
   });
 
-  const handleClick = (e: FormEvent) => {
-    console.log("hello", e);
-  };
   return (
     <div className="p-4">
       <h1 className="text-3xl font-semibold mb-4 font-noto uppercase tracking-wide my-4 text-center">

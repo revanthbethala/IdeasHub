@@ -18,7 +18,7 @@ export default function SignUp() {
     password: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -26,7 +26,7 @@ export default function SignUp() {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:React.FormEvent) => {
     e.preventDefault();
     const errors = { username: "", email: "", password: "" };
     let isValid = true;
@@ -51,7 +51,7 @@ export default function SignUp() {
         toast.success(res.message);
       } catch (error) {
         console.log(error);
-        toast.error(error?.response?.data|| "SignUp Failed");
+        toast.error("SignUp Failed");
       } finally {
         setIsLoading(false);
       }

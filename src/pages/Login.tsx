@@ -47,7 +47,7 @@ function Login() {
         navigate("/");
       } catch (error) {
         console.log(error);
-        toast.error(error.response?.data || "SignUp Failed");
+        toast.error("Login Failed");
       } finally {
         setIsLoading(false);
       }

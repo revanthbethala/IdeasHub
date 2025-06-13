@@ -1,7 +1,10 @@
 import { Navigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 
-function ProtectedRoute({ children }) {
+type ProtectedRouteType = {
+  children: React.ReactNode;
+};
+function ProtectedRoute({ children }: ProtectedRouteType) {
   const auth = useAuthContext();
 
   if (!auth) return null; // or a fallback spinner
@@ -10,7 +13,11 @@ function ProtectedRoute({ children }) {
 
   // Wait until token is checked (i.e., localStorage loaded)
   if (token === null) {
-    return <div className="flex justify-center items-center h-screen">Checking login...</div>;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        Checking login...
+      </div>
+    );
   }
 
   if (!isLoggedIn) {
