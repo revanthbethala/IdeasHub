@@ -19,7 +19,7 @@ export default function LandingPage() {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-6 leading-tight drop-shadow-sm">
-              Go-Ideas: Share & Discover Amazing Project Ideas 💡
+              Idea-Hub: Share & Discover Amazing Project Ideas 💡
             </h1>
             <div className="max-w-fit">
               <p className="text-base text-gray-600 ">
@@ -56,11 +56,11 @@ export default function LandingPage() {
               transition={{ delay: 0.5, type: "spring", stiffness: 160 }}
               className="absolute -left-16 -top-4 w-3/4 z-10 bg-slate-300/60 bg-opacity-90 border border-gray-300 backdrop-blur-md shadow-lg rounded-xl p-4"
             >
-              <h3 className="text-lg font-bold text-indigo-700 mb-2">
-                GO IDEAS
+              <h3 className="text-lg font-bold uppercase text-indigo-700 mb-2">
+               Idea-Hub
               </h3>
               <p className="text-sm text-slate-900 leading-relaxed">
-                Go-Ideas is a collaborative hub where developers and tech
+                Idea-Hub is a collaborative hub where developers and tech
                 enthusiasts can share their startup or side-project ideas,
                 discover innovative concepts, and get inspired. Built using MERN
                 stack, it features clean UI, voting, and detailed tagging for
@@ -143,7 +143,7 @@ function Cards() {
         {idea.title}
       </h2>
       <p className="text-gray-600 text-sm line-clamp-3 mb-3">
-        {idea.description.slice(0,60)}...
+        {idea.description.slice(0,)}...
       </p>
       <div className="flex flex-wrap gap-2 mb-3">
         {idea.tags.map((tag, idx) => (

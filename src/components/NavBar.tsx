@@ -13,7 +13,7 @@ function NavBar() {
         <nav className="max-w-7xl mx-auto flex justify-between items-center">
           {/* Logo */}
           <h1 className="text-2xl font-bold tracking-tight text-blue-700">
-            <NavLink to="/">GO-IDEAS</NavLink>
+            <NavLink to="/">IDEA-HUB</NavLink>
           </h1>
 
           {/* Desktop Menu */}
