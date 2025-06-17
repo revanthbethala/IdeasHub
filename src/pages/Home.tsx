@@ -29,7 +29,7 @@ export default function LandingPage() {
               </p>
             </div>
             <div className="flex gap-6 mt-5">
-              <NavLink to="/ideas">
+            <NavLink to="/ideas">
                 <button className="flex gap-2 mt-3 bg-blue-700 text-white px-3 py-2 rounded-full cursor-pointer">
                   Browse Ideas <ArrowRight />
                 </button>
@@ -57,7 +57,7 @@ export default function LandingPage() {
               className="absolute -left-16 -top-4 w-3/4 z-10 bg-slate-300/60 bg-opacity-90 border border-gray-300 backdrop-blur-md shadow-lg rounded-xl p-4"
             >
               <h3 className="text-lg font-bold uppercase text-indigo-700 mb-2">
-               Idea-Hub
+                Idea-Hub
               </h3>
               <p className="text-sm text-slate-900 leading-relaxed">
                 Idea-Hub is a collaborative hub where developers and tech
@@ -102,15 +102,12 @@ const getIdeas = async () => {
 }
 
 function Cards() {
-  const {
-    data: ideas = [],
-    isLoading,
-    error,
-  } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ["ideas"],
     queryFn: GetAllIdeas,
   });
-
+  const ideas = data?.data;
+  if (!ideas) return null;
   if (isLoading)
     return (
       <div className="flex justify-center items-center h-40">
@@ -143,7 +140,7 @@ function Cards() {
         {idea.title}
       </h2>
       <p className="text-gray-600 text-sm line-clamp-3 mb-3">
-        {idea.description.slice(0,)}...
+        {idea.description.slice(0)}...
       </p>
       <div className="flex flex-wrap gap-2 mb-3">
         {idea.tags.map((tag, idx) => (

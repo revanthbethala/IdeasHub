@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { AuthContextType } from "../types";
+import Cookies from "js-cookie"
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
-
 
 export const useAuthContext = (): AuthContextType => {
   const context = useContext(AuthContext);
@@ -20,7 +20,7 @@ export function AuthProvider({ children }: AuthProviderType) {
   const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
+    const storedToken = Cookies.get( "token");
     if (storedToken) {
       setIsLoggedIn(!!storedToken);
       setToken(storedToken);
@@ -28,12 +28,12 @@ export function AuthProvider({ children }: AuthProviderType) {
   }, []);
 
   const loginToken = (token: string) => {
-    localStorage.setItem("token", token);
+    Cookies.set("token", token);
     setToken(token);
-    setIsLoggedIn(true);
+    setIsLoggedIn(!!token);
   };
   const logOut = () => {
-    localStorage.removeItem("token");
+    Cookies.remove("token");
   };
   return (
     <AuthContext.Provider

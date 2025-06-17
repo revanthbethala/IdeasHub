@@ -5,19 +5,9 @@ import {
   projectInfoDataType,
   signUpDataType,
 } from "../types";
-
-const BASE_URL = "https://go-ideas-api.onrender.com/v1";
-const token = localStorage.getItem("token");
-
-// export const fetchData = async (endpoint: string) => {
-//   try {
-//     const res = await axios.get(`${BASE_URL}/${endpoint}`);
-//     const data = await res.data;
-//     return data;
-//   } catch (e) {
-//     return e.message;
-//   }
-// };
+import Cookies from "js-cookie";
+const BASE_URL = "http://localhost:3000/v1";
+const token = Cookies.get("token");
 
 export async function UserLogin(loginData: loginDataType) {
   try {
@@ -40,6 +30,7 @@ export async function UserSignUp(signUpDetails: signUpDataType) {
         "content-type": "application/json",
       },
     });
+    console.log(res);
     return res.data;
   } catch (error) {
     console.log(error);
@@ -58,7 +49,7 @@ export async function GetAllIdeas() {
 }
 export async function GetIdeaById(ideaId: string) {
   try {
-    const res = await axios.get(`${BASE_URL}/idea/${ideaId}`, {
+    const res = await axios.get(`${BASE_URL}/ideas/idea/${ideaId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -72,7 +63,7 @@ export async function GetIdeaById(ideaId: string) {
 
 export async function PostUserIdea(projectInfo: projectInfoDataType) {
   try {
-    const res = await axios.post(`${BASE_URL}/idea`, projectInfo, {
+    const res = await axios.post(`${BASE_URL}/ideas/idea`, projectInfo, {
       headers: {
         "content-type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -90,7 +81,7 @@ export async function UpdateIdeaById(
   ideaId: string
 ) {
   try {
-    const res = await axios.post(`${BASE_URL}/idea/${ideaId}`, projectInfo, {
+    const res = await axios.post(`${BASE_URL}/ideas/idea/${ideaId}`, projectInfo, {
       headers: {
         "content-type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -105,7 +96,7 @@ export async function UpdateIdeaById(
 
 export async function DeleteIdea(ideaId: string) {
   try {
-    const res = await axios.delete(`${BASE_URL}/idea/${ideaId}`, {
+    const res = await axios.delete(`${BASE_URL}/ideas/idea/${ideaId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

@@ -8,15 +8,12 @@ import { toast } from "react-toastify";
 function Idea() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const {
-    data: idea,
-    isLoading,
-    error,
-  } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ["idea", id],
     queryFn: () => GetIdeaById(id as string),
     enabled: !!id,
   });
+  const idea = data?.data;
   const handleDelete = async () => {
     try {
       const res = await DeleteIdea(id as string);
@@ -115,11 +112,12 @@ function Idea() {
         >
           Delete Idea
         </button>
-          <NavLink to={`/ideas/${id}/update`}
-            className="bg-blue-600 text-white text-sm font-medium text-center p-2 rounded-lg"
-          >
-            Update Idea
-          </NavLink>
+        <NavLink
+          to={`/ideas/${id}/update`}
+          className="bg-blue-600 text-white text-sm font-medium text-center p-2 rounded-lg"
+        >
+          Update Idea
+        </NavLink>
       </div>
     </div>
   );

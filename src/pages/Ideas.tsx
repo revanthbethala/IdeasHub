@@ -1,26 +1,39 @@
 import { GetAllIdeas } from "../services/IdeaServices";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../components/Loading";
-import { Filter,  Search } from "lucide-react";
+import { Filter, Search } from "lucide-react";
 import { motion } from "motion/react";
-import {  useState } from "react";
+import { useState } from "react";
 import { ideaType } from "../types";
 import { NavLink } from "react-router-dom";
 import { capitalizeWords } from "../helpers/capitalizeWords";
 
 function Ideas() {
-  const { data, isLoading, error } = useQuery({
+  const {
+    data: ideas,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ["ideas"],
     queryFn: GetAllIdeas,
   });
-
+  const data = ideas?.data;
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTag, setSelectedTag] = useState("");
   const [selectedTech, setSelectedTech] = useState("");
-
   if (isLoading) return <Loading />;
+  if (!data)
+    return (
+      <div className="text-gray-600 font-medium mt-10 text-center">
+        No ideas exists
+      </div>
+    );
   if (error)
-    return <div className="text-red-600 font-medium">{error?.message}</div>;
+    return (
+      <div className="text-red-600 font-medium text-center mt-10">
+        {error?.message}
+      </div>
+    );
 
   const uniqueTags: string[] = Array.from(
     new Set(data.flatMap((idea: ideaType) => idea.tags))
